@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mapobject {
+            background: none;
+            position: absolute;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        #mass1 {
+            top: 40px;
+            left: 87px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #mass2 {
+            top: 40px;
+            left: 609px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #particles1 {
+            top: 220px;
+            left: 22px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #particles2 {
+            top: 223px;
+            left: 650px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #volume1 {
+            top: 403px;
+            left: 87px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #volume2 {
+            top: 395px;
+            left: 609px;
+            height: 87px;
+            width: 115px;
+        }
+
+        #moles1 {
+            top: 212px;
+            left: 239px;
+            height: 107px;
+            width: 100px;
+        }
+
+        #moles2 {
+            top: 212px;
+            left: 446px;
+            height: 107px;
+            width: 100px;
+        }
+
+        #calc {
+            position: absolute;
+            left: 800px;
+        }
+
+        #start {
+            background: blue;
+            width: 60px;
+            height: 42px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bolder;
+            font-family: sans-serif;
+            border-radius: 20px;
+            padding-top: 18px;
+            top: 470px;
+            display: none;
+        }
+
+        #end {
+            background: red;
+            width: 60px;
+            height: 42px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bolder;
+            font-family: sans-serif;
+            border-radius: 20px;
+            padding-top: 18px;
+            top: 470px;
+            left: 300px;
+            display: none;
+        }
+
+        #curchoosing {
+            position: absolute;
+            top: 60px;
+            left: 200px;
+            text-align: center;
+            width: 400px;
+            font-family: sans-serif;
+            font-size: 20px;
+        }
+
+        input {
+            text-align: center;
+            border: 1px solid black;
+            border-radius: 5px;
+            font-size: 13px;
+            width: 50px;
+            background: white;
+        }
+
+        #mass1element {
+            top: 130px;
+            left: 120px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+        #mass1mass {
+            top: 130px;
+            left: 60px;
+            display: none;
+            background: white;
+        }
+
+        #mass2element {
+            top: 130px;
+            left: 610px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+
+        #particles1element {
+            top: 310px;
+            left: 70px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+        #particles1particles {
+            top: 310px;
+            left: 10px;
+            display: none;
+            background: white;
+        }
+
+        #particles2element {
+            top: 310px;
+            left: 652px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+
+        #volume1volume {
+            top: 492px;
+            left: 79px;
+            display: none;
+            background: white;
+        }
+
+        #volume1element {
+            top: 492px;
+            left: 140px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+
+        #volume2element {
+            top: 486px;
+            left: 611px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+        #moles1moles {
+            top: 310px;
+            left: 190px;
+            display: none;
+            background: white;
+        }
+
+        #moles1element {
+            top: 310px;
+            left: 250px;
+            width: 110px;
+            display: none;
+            background: white;
+        }
+
+        #moles2element {
+            top: 310px;
+            left: 440px;
+            width: 110px;
+            background: white;
+            display: none;
+        }
+
+        #molesratio1 {
+            top: 290px;
+            left: 365px;
+            width: 70px;
+            background: white;
+            display: none;
+        }
+
+        #molesratio2 {
+            top: 310px;
+            left: 365px;
+            width: 70px;
+            background: white;
+            display: none
+        }
+        #result{
+            background:#eeeeee;
+            color:black;
+            font-family:sans-serif;
+            text-align: center;
+            width:400px;
+            padding-top:70px;
+            position:absolute;
+            left:900px;
+            height:100px;
+            border-radius:10px;
+            font-size:30px;
+        }
+        #exact{
+            font-size:15px;
+        }
+        #molarmasscalc{
+            position:absolute;
+            left:900px;
+            top:400px;
+            background:#eeeeee;
+            padding-left:50px;
+            padding-right:50px;
+            font-family:sans-serif;
+            border-radius:10px;
+        }
+        #molarmasscalc input{
+            position:absolute;
+            right:50px;
+        }
+        #molarmasscalc p{
+            text-size:15px;
+        }
+    </style>
+</head>
+
+<>
+    <img id="map" src="map.png" width="800px" height="500px">
+    <div id="mass1" class="mapobject"></div>
+    <input id="mass1mass" placeholder="grams" class="mapobject">
+    <input id="mass1element" placeholder="element name" class="mapobject">
+    <div id="particles1" class="mapobject"></div>
+    <input id="particles1particles" placeholder="particles" class="mapobject">
+    <input id="particles1element" placeholder="element name" class="mapobject">
+    <div id="volume1" class="mapobject"></div>
+    <input id="volume1volume" placeholder="liters" class="mapobject">
+    <input id="volume1element" placeholder="element name" class="mapobject">
+    <div id="moles1" class="mapobject"></div>
+    <input id="moles1moles" placeholder="moles" class="mapobject">
+    <input id="moles1element" placeholder="element name" class="mapobject">
+    <input id="molesratio1" placeholder="e1 moles" class="mapobject">
+    <input id="molesratio2" placeholder="e2 moles" class="mapobject">
+    <div id="moles2" class="mapobject"></div>
+    <input id="moles2element" placeholder="element name" class="mapobject">
+    <div id="mass2" class="mapobject"></div>
+    <input id="mass2element" placeholder="element name" class="mapobject">
+    <div id="particles2" class="mapobject"></div>
+    <input id="particles2element" placeholder="element name" class="mapobject">
+    <div id="volume2" class="mapobject"></div>
+    <input id="volume2element" placeholder="element name" class="mapobject">
+    <div id="start" class="mapobject">Start</div>
+    <div id="end" class="mapobject">End</div>
+    <h1 id="curchoosing">Currently Loading...</h1>
+    <p id = "result">Enter Some Values </p>
+    <img src = "start.png" id = "startimg" style = "display:none; position:absolute" width="80">
+    <img src = "end.png" id = "endimg" style = "display:none; position:absolute" width="80">
+    <div id = "molarmasscalc">
+        <h4>Molar Mass Calculator</h4>
+        <label>Formula</label>
+        <input type="text" id = "molarmasscalcele">
+        <p id = "molarmasscalcresult"></p>
+    </div>
+
+    <script>
+        var molarMasses = [
+            [1.0079, "H"],
+            [4.0026, "He"],
+            [6.941, "Li"],
+            [9.0122, "Be"],
+            [10.811, "B"],
+            [12.0107, "C"],
+            [14.0067, "N"],
+            [15.9994, "O"],
+            [18.9984, "F"],
+            [20.1797, "Ne"],
+            [22.9897, "Na"],
+            [24.305, "Mg"],
+            [26.9815, "Al"],
+            [28.0855, "Si"],
+            [30.9738, "P"],
+            [32.065, "S"],
+            [35.453, "Cl"],
+            [39.0983, "K"],
+            [39.948, "Ar"],
+            [40.078, "Ca"],
+            [44.9559, "Sc"],
+            [47.867, "Ti"],
+            [50.9415, "V"],
+            [51.9961, "Cr"],
+            [54.938, "Mn"],
+            [55.845, "Fe"],
+            [58.6934, "Ni"],
+            [58.9332, "Co"],
+            [63.546, "Cu"],
+            [65.39, "Zn"],
+            [69.723, "Ga"],
+            [72.64, "Ge"],
+            [74.9216, "As"],
+            [78.96, "Se"],
+            [79.904, "Br"],
+            [83.8, "Kr"],
+            [85.4678, "Rb"],
+            [87.62, "Sr"],
+            [88.9059, "Y"],
+            [91.224, "Zr"],
+            [92.9064, "Nb"],
+            [95.94, "Mo"],
+            [98, "Tc"],
+            [101.07, "Ru"],
+            [102.9055, "Rh"],
+            [106.42, "Pd"],
+            [107.8682, "Ag"],
+            [112.411, "Cd"],
+            [114.818, "In"],
+            [118.71, "Sn"],
+            [121.76, "Sb"],
+            [126.9045, "I"],
+            [127.6, "Te"],
+            [131.293, "Xe"],
+            [132.9055, "Cs"],
+            [137.327, "Ba"],
+            [138.9055, "La"],
+            [140.116, "Ce"],
+            [140.9077, "Pr"],
+            [144.24, "Nd"],
+            [145, "Pm"],
+            [150.36, "Sm"],
+            [151.964, "Eu"],
+            [157.25, "Gd"],
+            [158.9253, "Tb"],
+            [162.5, "Dy"],
+            [164.9303, "Ho"],
+            [167.259, "Er"],
+            [168.9342, "Tm"],
+            [173.04, "Yb"],
+            [174.967, "Lu"],
+            [178.49, "Hf"],
+            [180.9479, "Ta"],
+            [183.84, "W"],
+            [186.207, "Re"],
+            [190.23, "Os"],
+            [192.217, "Ir"],
+            [195.078, "Pt"],
+            [196.9665, "Au"],
+            [200.59, "Hg"],
+            [204.3833, "Tl"],
+            [207.2, "Pb"],
+            [208.9804, "Bi"],
+            [209, "Po"],
+            [210, "At"],
+            [222, "Rn"],
+            [223, "Fr"],
+            [226, "Ra"],
+            [227, "Ac"],
+            [231.0359, "Pa"],
+            [232.0381, "Th"],
+            [237, "Np"],
+            [238.0289, "U"],
+            [243, "Am"],
+            [244, "Pu"],
+            [247, "Cm"],
+            [247, "Bk"],
+            [251, "Cf"],
+            [252, "Es"],
+            [257, "Fm"],
+            [258, "Md"],
+            [259, "No"],
+            [261, "Rf"],
+            [262, "Lr"],
+            [262, "Db"],
+            [264, "Bh"],
+            [266, "Sg"],
+            [268, "Mt"],
+            [272, "Rg"],
+            [277, "Hs"]
+        ]
+
+
+        class DataPoint {
+            constructor(input1, type, input2) {
+                this.type = type;
+                this.input1 = input1;
+                this.input2 = input2 || "NONE PROVIDED";
+            }
+            findMolarMass() {
+                var mass = 0;
+                var parts = this.element.split(/(?=[A-Z])/)
+                for(var p of parts){
+                    var startmass = mass;
+                    var numpart = p.match(/\d+/g);
+                    var wordpart = p.match(/[a-zA-Z]+/g);
+                    if(numpart == null){
+                        numpart = "1";
+                    }
+                    numpart = parseFloat(numpart);
+                    for(var e of molarMasses){
+                        if(e[1] == wordpart){
+                            mass += numpart * e[0];
+                        }
+                    }
+                    if(mass == startmass){
+                        console.error("element not found in database: " + wordpart + numpart);
+                        return "invalid";
+                    }
+                }
+                return mass;
+            }
+            setValues() {
+                this.value = parseFloat(this.input1.value);
+                this.element = this.input2.value;
+            }
+        }
+        class FixedDataPoint {
+            constructor(value, type, element) {
+                this.type = type;
+                this.value = value;
+                this.element = element;
+            }
+            findMolarMass() {
+                var mass = 0;
+                var parts = this.element.split(/(?=[A-Z])/)
+                for(var p of parts){
+                    var startmass = mass;
+                    var numpart = p.match(/\d+/g);
+                    var wordpart = p.match(/[a-zA-Z]+/g);
+                    if(numpart == null){
+                        numpart = "1";
+                    }
+                    numpart = parseFloat(numpart);
+                    for(var e of molarMasses){
+                        if(e[1] == wordpart){
+                            mass += numpart * e[0];
+                        }
+                    }
+                    if(mass == startmass){
+                        console.error("element not found in database: " + wordpart + numpart);
+                        return "invalid";
+                    }
+                }
+                return mass;
+            }
+        }
+
+        class DataFramework {
+            constructor(type, input) {
+                this.type = type;
+                this.input = input;
+            }
+            findMolarMass() {
+                var mass = 0;
+                var parts = this.element.split(/(?=[A-Z])/)
+                for(var p of parts){
+                    var startmass = mass;
+                    var numpart = p.match(/\d+/g);
+                    var wordpart = p.match(/[a-zA-Z]+/g);
+                    if(numpart == null){
+                        numpart = "1";
+                    }
+                    numpart = parseFloat(numpart);
+                    for(var e of molarMasses){
+                        if(e[1] == wordpart){
+                            mass += numpart * e[0];
+                        }
+                    }
+                    if(mass == startmass){
+                        console.error("element not found in database: " + wordpart + numpart);
+                        return "invalid";
+                    }
+                }
+                return mass;
+            }
+            setValues() {
+                this.element = this.input.value;
+            }
+        }
+
+        function findSigFigs(number) {
+            var array = splitNumber(number);
+
+            var notPassedDecimal = true;
+            var arrayofdigits = [];
+            for (var a of array) {
+                if (!isNaN(a)) {
+                    arrayofdigits.push(new DigitForSigFigs(a));
+                    arrayofdigits[arrayofdigits.length - 1].predecimal = notPassedDecimal;
+                } else {
+                    notPassedDecimal = false;
+                }
+
+            }
+
+            for (var a of arrayofdigits) {
+                if (a.digit != 0) {
+                    a.significant = true;
+                }
+            }
+            for (var i = 0; i < arrayofdigits.length; i++) {
+                if (arrayofdigits[i].digit == 0) {
+                    if (isThereASigFigBeforeThis(arrayofdigits, i) && isThereASigFigAfterThis(arrayofdigits, i)) {
+                        arrayofdigits[i].significant = true;
+                    }
+                }
+            }
+            for (var i = 0; i < arrayofdigits.length; i++) {
+                if (arrayofdigits[i].digit == 0) {
+                    if (isThereASigFigBeforeThis(arrayofdigits, i) && arrayofdigits[i].predecimal == false) {
+                        arrayofdigits[i].significant = true;
+                    }
+                }
+            }
+            for (var i = 0; i < arrayofdigits.length; i++) {
+
+                if (arrayofdigits[i].digit == 0) {
+
+                    if (isThereASigFigBeforeThis(arrayofdigits, i) && isThereASigFigAfterThis(arrayofdigits, i)) {
+
+                        arrayofdigits[i].significant = true;
+                    }
+                }
+            }
+
+            var sigFigs = 0;
+            for (var a of arrayofdigits) {
+                if (a.significant) {
+                    sigFigs++;
+                }
+            }
+
+            return sigFigs;
+
+        }
+
+        function isThereASigFigBeforeThis(array, index) {
+            for (var i = 0; i < index; i++) {
+                if (array[i].significant) {
+                    return true;
+                }
+            }
+            return false
+        }
+
+        function isThereASigFigAfterThis(array, index) {
+            for (var i = index; i < array.length; i++) {
+                if (array[i].significant) {
+                    return true;
+                }
+            }
+            return false
+        }
+        class DigitForSigFigs {
+            constructor(digit) {
+                this.digit = digit;
+                this.significant = false;
+                this.predecimal = false;
+            }
+        }
+
+        function splitNumber(number) {
+
+            output = [],
+                sNumber = number.toLocaleString('fullwide', {
+                    useGrouping: false
+                });
+
+            for (var i = 0, len = sNumber.length; i < len; i += 1) {
+                output.push(+sNumber.charAt(i));
+            }
+            return output;
+        }
+
+        function gramsToMoles(grams, molarmass) {
+            return grams / molarmass;
+        }
+
+        function particlesToMoles(particles) {
+            return particles / (6.022e23);
+        }
+
+        function litersToMoles(liters) {
+            return liters / 22.4;
+        }
+
+        function molesToGrams(moles, molarmass) {
+            return moles * molarmass;
+        }
+
+        function molesToParticles(moles) {
+            return moles * (6.022e23);
+        }
+
+        function molesToLiters(moles) {
+            return moles * 22.4;
+        }
+
+        function convert(datapoint, dataframework) {
+            datapoint.setValues();
+            dataframework.setValues();
+            if (datapoint.element == dataframework.element) {
+                var dataPointMoles;
+
+                switch (datapoint.type) {
+                    case "grams":
+                        dataPointMoles = gramsToMoles(datapoint.value, datapoint.findMolarMass());
+                        break;
+                    case "particles":
+                        dataPointMoles = particlesToMoles(datapoint.value);
+                        break;
+                    case "liters":
+                        dataPointMoles = litersToMoles(datapoint.value);
+                        break;
+                    case "moles":
+                        dataPointMoles = datapoint.value;
+                        break;
+                }
+                console.log(dataPointMoles);
+                switch (dataframework.type) {
+                    case "grams":
+                        return new FixedDataPoint(molesToGrams(dataPointMoles, dataframework.findMolarMass()), "grams",
+                            dataframework.element);
+                        break;
+                    case "particles":
+                        return new FixedDataPoint(molesToParticles(dataPointMoles), "particles", dataframework.element);
+                        break;
+                    case "liters":
+                        return new FixedDataPoint(molesToLiters(dataPointMoles), "liters", dataframework.element);
+                        break;
+                    case "moles":
+                        return new FixedDataPoint(dataPointMoles, "moles", dataframework.element);
+                        break;
+                }
+            } else {
+                var dataPointMoles;
+                switch (datapoint.type) {
+                    case "grams":
+                        dataPointMoles = gramsToMoles(datapoint.value, datapoint.findMolarMass());
+                        break;
+                    case "particles":
+                        dataPointMoles = particlesToMoles(datapoint.value);
+                        break;
+                    case "liters":
+                        dataPointMoles = litersToMoles(datapoint.value);
+                        break;
+                    case "moles":
+                        dataPointMoles = datapoint.value;
+                        break;
+                }
+                console.log(dataPointMoles);
+                dataPointMoles *= parseFloat(document.getElementById("molesratio1").value) / parseFloat(document
+                    .getElementById("molesratio2").value);
+                console.log(parseFloat(document.getElementById("molesratio1").value) / parseFloat(document
+                    .getElementById("molesratio2").value));
+                console.log(dataPointMoles);
+                switch (dataframework.type) {
+                    case "grams":
+                        return new FixedDataPoint(molesToGrams(dataPointMoles, dataframework.findMolarMass()), "grams",
+                            dataframework.element);
+                        break;
+                    case "particles":
+                        return new FixedDataPoint(molesToParticles(dataPointMoles), "particles", dataframework.element);
+                        break;
+                    case "liters":
+                        return new FixedDataPoint(molesToLiters(dataPointMoles), "liters", dataframework.element);
+                        break;
+                    case "moles":
+                        return new FixedDataPoint(dataPointMoles, "moles", dataframework.element);
+                        break;
+                }
+
+            }
+        }
+
+        var start;
+        var end;
+
+
+        document.getElementById("mass1").addEventListener("click", function () {
+            if (start == undefined) {
+                start = new DataPoint(document.getElementById("mass1mass"), "grams", document.getElementById(
+                    "mass1element"))
+                document.getElementById("mass1mass").style.display = "block";
+                document.getElementById("mass1element").style.display = "block";
+                document.getElementById("curchoosing").innerHTML =
+                    "Currently Choosing End<br>Click on one of the parts of the map"
+                document.getElementById("startimg").style.top = "-10px";
+                document.getElementById("startimg").style.left = "40px";
+                document.getElementById("startimg").style.display = "block";
+                } else if(end == undefined) {
+                end = new DataFramework("grams", start.input2);
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "-10px";
+                document.getElementById("endimg").style.left = "40px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("particles1").addEventListener("click", function () {
+
+            if (start == undefined) {
+                start = new DataPoint(document.getElementById("particles1particles"), "particles", document
+                    .getElementById("particles1element"))
+                document.getElementById("particles1particles").style.display = "block";
+                document.getElementById("particles1element").style.display = "block";
+                document.getElementById("startimg").style.top = "175px";
+                document.getElementById("startimg").style.left = "-23px";
+                document.getElementById("startimg").style.display = "block";
+                document.getElementById("curchoosing").innerHTML =
+                    "Currently Choosing End<br>Click on one of the parts of the map"
+            } else if(end == undefined) {
+                end = new DataFramework("particles", start.input2);
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "175px";
+                document.getElementById("endimg").style.left = "-23px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("volume1").addEventListener("click", function () {
+
+            if (start == undefined) {
+                start = new DataPoint(document.getElementById("volume1volume"), "liters", document
+                    .getElementById("volume1element"))
+
+                document.getElementById("volume1volume").style.display = "block";
+                document.getElementById("volume1element").style.display = "block";
+                document.getElementById("startimg").style.top = "355px";
+                document.getElementById("startimg").style.left = "43px";
+                document.getElementById("startimg").style.display = "block";
+                document.getElementById("curchoosing").innerHTML =
+                    "Currently Choosing End<br>Click on one of the parts of the map"
+            } else if(end == undefined) {
+                end = new DataFramework("liters", start.input2);
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "355px";
+                document.getElementById("endimg").style.left = "43px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("moles1").addEventListener("click", function () {
+            if (start == undefined) {
+                start = new DataPoint(document.getElementById("moles1moles"), "moles", document.getElementById(
+                    "moles1element"))
+                document.getElementById("moles1moles").style.display = "block";
+                document.getElementById("moles1element").style.display = "block";
+                document.getElementById("curchoosing").innerHTML =
+                    "Currently Choosing End<br>Click on one of the parts of the map"
+                    document.getElementById("startimg").style.top = "180px";
+                document.getElementById("startimg").style.left = "210px";
+                document.getElementById("startimg").style.display = "block";
+            } else if(end == undefined) {
+                end = new DataFramework("moles", start.input2);
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "180px";
+                document.getElementById("endimg").style.left = "210px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("moles2").addEventListener("click", function () {if (start == undefined) {} else if(end == undefined) {
+                end = new DataFramework("moles", document.getElementById("moles2element"))
+                document.getElementById("moles2element").style.display = "block";
+                document.getElementById("molesratio1").style.display = "block";
+                document.getElementById("molesratio2").style.display = "block";
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "180px";
+                document.getElementById("endimg").style.left = "420px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("mass2").addEventListener("click", function () {
+            if (start == undefined) {} else if(end == undefined) {
+                end = new DataFramework("grams", document.getElementById("mass2element"))
+                document.getElementById("mass2element").style.display = "block";
+                document.getElementById("molesratio1").style.display = "block";
+                document.getElementById("molesratio2").style.display = "block";
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "-10px";
+                document.getElementById("endimg").style.left = "560px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("particles2").addEventListener("click", function () {
+            if (start == undefined) {} else if(end == undefined) {
+                document.getElementById("molesratio1").style.display = "block";
+                document.getElementById("molesratio2").style.display = "block";
+                end = new DataFramework("particles", document.getElementById("particles2element"))
+                document.getElementById("particles2element").style.display = "block";
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "180px";
+                document.getElementById("endimg").style.left = "610px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("volume2").addEventListener("click", function () {
+
+            if (start == undefined) {} else if(end == undefined) {
+                document.getElementById("molesratio1").style.display = "block";
+                document.getElementById("molesratio2").style.display = "block";
+                end = new DataFramework("liters", document.getElementById("volume2element"))
+                document.getElementById("volume2element").style.display = "block";
+                document.getElementById("curchoosing").innerHTML = "";
+                document.getElementById("endimg").style.top = "356px";
+                document.getElementById("endimg").style.left = "570px";
+                document.getElementById("endimg").style.display = "block";
+            }
+        });
+        document.getElementById("curchoosing").innerHTML =
+            "Currently Choosing Start<br>Click on one of the parts of the map"
+        setInterval(function(){
+            try{
+            start.setValues();
+            end.setValues();
+
+            var baseValue = convert(start, end, 1).value;
+            value = baseValue.toPrecision(findSigFigs(start.value));
+            if(!isNaN(value)){
+            document.getElementById("result").innerHTML = (value + " " + convert(start, end, 1).type + " of " + convert(start, end, 1).element) + "<br><p id = 'exact'> EXACT CALC: " + baseValue + "</p>";
+            
+            }else{
+                console.log("no inputs"); 
+            }
+            } catch{
+                console.log("no inputs");
+            }
+        },200);
+        function fixNonDigits(array) {
+            var temp = array;
+            for (var i = 0; i < temp.length; i++) {
+                if (temp[i].value > 9) {
+                    if (i != 0) {
+                        temp[i - 1].value++;
+                        temp[i].value = 0;
+                        fixNonDigits(temp);
+                    }
+                }
+            }
+            return temp;
+        }
+        setInterval(function(){
+            var temp = new DataFramework("N/A",document.getElementById("molarmasscalcele"));
+            if(document.getElementById("molarmasscalcele").value != ""){
+            temp.setValues();
+            if(temp.findMolarMass() == 0 || temp.findMolarMass() == "invalid"){
+                document.getElementById("molarmasscalcresult").innerHTML = "Invalid Formula Provided";  
+            }else{
+            document.getElementById("molarmasscalcresult").innerHTML = temp.findMolarMass() + " grams/mole";
+            }
+            }else{
+                document.getElementById("molarmasscalcresult").innerHTML = "No Formula Provided";   
+            }
+            
+        },200)
+    </script>
+</body>
+
+</html>
