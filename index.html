@@ -492,7 +492,7 @@
                 return mass;
             }
             setValues() {
-                this.value = parseFloat(this.input1.value);
+                this.value = this.input1.value;
                 this.element = this.input2.value;
             }
         }
@@ -921,10 +921,10 @@
                         baseValue + "</p>";
 
                 } else {
-                    console.error("no inputs/invalid");
+                    console.error("no inputs/invalid generally not concerning");
                 }
             } catch {
-                console.error("no inputs/invalid");
+                console.error("no inputs/invalid generally not concerning");
             }
         }, 200);
 
