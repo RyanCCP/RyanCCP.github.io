@@ -243,38 +243,69 @@
             background: white;
             display: none
         }
-        #result{
-            background:#eeeeee;
-            color:black;
-            font-family:sans-serif;
+
+        #result {
+            background: #eeeeee;
+            color: black;
+            font-family: sans-serif;
             text-align: center;
-            width:400px;
-            padding-top:70px;
-            position:absolute;
-            left:900px;
-            height:100px;
-            border-radius:10px;
-            font-size:30px;
+            width: 400px;
+            padding-top: 70px;
+            position: absolute;
+            left: 900px;
+            height: 100px;
+            border-radius: 10px;
+            font-size: 30px;
         }
-        #exact{
-            font-size:15px;
+
+        #exact {
+            font-size: 15px;
         }
-        #molarmasscalc{
-            position:absolute;
-            left:900px;
-            top:400px;
-            background:#eeeeee;
-            padding-left:50px;
-            padding-right:50px;
-            font-family:sans-serif;
-            border-radius:10px;
+
+        #molarmasscalc {
+            position: absolute;
+            left: 900px;
+            top: 400px;
+            background: #eeeeee;
+            padding-left: 50px;
+            padding-right: 50px;
+            font-family: sans-serif;
+            border-radius: 10px;
         }
-        #molarmasscalc input{
-            position:absolute;
-            right:50px;
+
+        #molarmasscalc input {
+            position: absolute;
+            right: 50px;
         }
-        #molarmasscalc p{
-            text-size:15px;
+
+        #molarmasscalc p {
+            text-size: 15px;
+        }
+
+        .ratio {
+            position: absolute;
+            top: 500px;
+            width:200px;
+        }
+
+        .ratio p {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        .ratio .spacer {
+            height: 2px;
+            width: 100%;
+            background-color: black;
+        }
+        #rat2{
+            left:350px;
+        }
+        #rat3{
+            left:600px;
+        }
+        #rat1{
+            left:100px;
         }
     </style>
 </head>
@@ -306,16 +337,16 @@
     <div id="start" class="mapobject">Start</div>
     <div id="end" class="mapobject">End</div>
     <h1 id="curchoosing">Currently Loading...</h1>
-    <p id = "result">Enter Some Values </p>
-    <img src = "start.png" id = "startimg" style = "display:none; position:absolute" width="80">
-    <img src = "end.png" id = "endimg" style = "display:none; position:absolute" width="80">
-    <div id = "molarmasscalc">
+    <p id="result">Enter Some Values </p>
+    <img src="start.png" id="startimg" style="display:none; position:absolute" width="80">
+    <img src="end.png" id="endimg" style="display:none; position:absolute" width="80">
+    <div id="molarmasscalc">
         <h4>Molar Mass Calculator</h4>
         <label>Formula</label>
-        <input type="text" id = "molarmasscalcele">
-        <p id = "molarmasscalcresult"></p>
+        <input type="text" id="molarmasscalcele">
+        <p id="molarmasscalcresult"></p>
     </div>
-
+    <div id="ratios"></div>
     <script>
         var molarMasses = [
             [1.0079, "H"],
@@ -440,20 +471,20 @@
             findMolarMass() {
                 var mass = 0;
                 var parts = this.element.split(/(?=[A-Z])/)
-                for(var p of parts){
+                for (var p of parts) {
                     var startmass = mass;
                     var numpart = p.match(/\d+/g);
                     var wordpart = p.match(/[a-zA-Z]+/g);
-                    if(numpart == null){
+                    if (numpart == null) {
                         numpart = "1";
                     }
                     numpart = parseFloat(numpart);
-                    for(var e of molarMasses){
-                        if(e[1] == wordpart){
+                    for (var e of molarMasses) {
+                        if (e[1] == wordpart) {
                             mass += numpart * e[0];
                         }
                     }
-                    if(mass == startmass){
+                    if (mass == startmass) {
                         console.error("element not found in database: " + wordpart + numpart);
                         return "invalid";
                     }
@@ -465,6 +496,7 @@
                 this.element = this.input2.value;
             }
         }
+
         class FixedDataPoint {
             constructor(value, type, element) {
                 this.type = type;
@@ -474,20 +506,20 @@
             findMolarMass() {
                 var mass = 0;
                 var parts = this.element.split(/(?=[A-Z])/)
-                for(var p of parts){
+                for (var p of parts) {
                     var startmass = mass;
                     var numpart = p.match(/\d+/g);
                     var wordpart = p.match(/[a-zA-Z]+/g);
-                    if(numpart == null){
+                    if (numpart == null) {
                         numpart = "1";
                     }
                     numpart = parseFloat(numpart);
-                    for(var e of molarMasses){
-                        if(e[1] == wordpart){
+                    for (var e of molarMasses) {
+                        if (e[1] == wordpart) {
                             mass += numpart * e[0];
                         }
                     }
-                    if(mass == startmass){
+                    if (mass == startmass) {
                         console.error("element not found in database: " + wordpart + numpart);
                         return "invalid";
                     }
@@ -504,20 +536,20 @@
             findMolarMass() {
                 var mass = 0;
                 var parts = this.element.split(/(?=[A-Z])/)
-                for(var p of parts){
+                for (var p of parts) {
                     var startmass = mass;
                     var numpart = p.match(/\d+/g);
                     var wordpart = p.match(/[a-zA-Z]+/g);
-                    if(numpart == null){
+                    if (numpart == null) {
                         numpart = "1";
                     }
                     numpart = parseFloat(numpart);
-                    for(var e of molarMasses){
-                        if(e[1] == wordpart){
+                    for (var e of molarMasses) {
+                        if (e[1] == wordpart) {
                             mass += numpart * e[0];
                         }
                     }
-                    if(mass == startmass){
+                    if (mass == startmass) {
                         console.error("element not found in database: " + wordpart + numpart);
                         return "invalid";
                     }
@@ -650,36 +682,46 @@
         function convert(datapoint, dataframework) {
             datapoint.setValues();
             dataframework.setValues();
+            document.getElementById("ratios").innerHTML = "";
             if (datapoint.element == dataframework.element) {
                 var dataPointMoles;
 
                 switch (datapoint.type) {
                     case "grams":
                         dataPointMoles = gramsToMoles(datapoint.value, datapoint.findMolarMass());
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">' + datapoint.findMolarMass() + ' grams of ' + datapoint.element +  '</p></div>';
                         break;
                     case "particles":
                         dataPointMoles = particlesToMoles(datapoint.value);
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">6.022e23 particles of ' + datapoint.element +  '</p></div>';
                         break;
                     case "liters":
                         dataPointMoles = litersToMoles(datapoint.value);
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">22.4 liters of ' + datapoint.element +  '</p></div>';
                         break;
                     case "moles":
                         dataPointMoles = datapoint.value;
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">1 mole of ' + datapoint.element +  '</p></div>';
                         break;
                 }
                 console.log(dataPointMoles);
                 switch (dataframework.type) {
                     case "grams":
+                        document.getElementById("ratios").innerHTML +='<div id = "rat2" class = "ratio"><p class = "num">' + dataframework.findMolarMass() + ' grams of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToGrams(dataPointMoles, dataframework.findMolarMass()), "grams",
                             dataframework.element);
+                            
                         break;
                     case "particles":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat2" class = "ratio"><p class = "num"> 6.022e23 particles of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToParticles(dataPointMoles), "particles", dataframework.element);
                         break;
                     case "liters":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat2" class = "ratio"><p class = "num"> 22.4 liters of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToLiters(dataPointMoles), "liters", dataframework.element);
                         break;
                     case "moles":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat2" class = "ratio"><p class = "num"> 1 mole of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(dataPointMoles, "moles", dataframework.element);
                         break;
                 }
@@ -688,35 +730,43 @@
                 switch (datapoint.type) {
                     case "grams":
                         dataPointMoles = gramsToMoles(datapoint.value, datapoint.findMolarMass());
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">' + datapoint.findMolarMass() + ' grams of ' + datapoint.element +  '</p></div>';
                         break;
                     case "particles":
                         dataPointMoles = particlesToMoles(datapoint.value);
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">6.022e23 particles of ' + datapoint.element +  '</p></div>';
                         break;
                     case "liters":
                         dataPointMoles = litersToMoles(datapoint.value);
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">22.4 liters of ' + datapoint.element +  '</p></div>';
                         break;
                     case "moles":
                         dataPointMoles = datapoint.value;
+                        document.getElementById("ratios").innerHTML +='<div id = "rat1" class = "ratio"><p class = "num">1 mole of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">1 mole of ' + datapoint.element +  '</p></div>';
                         break;
                 }
                 console.log(dataPointMoles);
                 dataPointMoles *= parseFloat(document.getElementById("molesratio1").value) / parseFloat(document
                     .getElementById("molesratio2").value);
-                console.log(parseFloat(document.getElementById("molesratio1").value) / parseFloat(document
-                    .getElementById("molesratio2").value));
+                    document.getElementById("ratios").innerHTML +='<div id = "rat2" class = "ratio"><p class = "num">' + parseFloat(document.getElementById("molesratio1").value) + ' mole(s) of ' +datapoint.element + '</p><div class = "spacer"></div><p class = "denom">' + parseFloat(document.getElementById("molesratio2").value) + ' mole(s) of ' + dataframework.element +  '</p></div>'; 
                 console.log(dataPointMoles);
                 switch (dataframework.type) {
                     case "grams":
+                        document.getElementById("ratios").innerHTML +='<div id = "rat3" class = "ratio"><p class = "num">' + dataframework.findMolarMass() + ' grams of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToGrams(dataPointMoles, dataframework.findMolarMass()), "grams",
                             dataframework.element);
+                            
                         break;
                     case "particles":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat3" class = "ratio"><p class = "num"> 6.022e23 particles of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToParticles(dataPointMoles), "particles", dataframework.element);
                         break;
                     case "liters":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat3" class = "ratio"><p class = "num"> 22.4 liters of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(molesToLiters(dataPointMoles), "liters", dataframework.element);
                         break;
                     case "moles":
+                    document.getElementById("ratios").innerHTML +='<div id = "rat3" class = "ratio"><p class = "num"> 1 mole of ' + dataframework.element+'</p><div class = "spacer"></div><p class = "denom"> 1 mole of ' + datapoint.element + '</p></div>'
                         return new FixedDataPoint(dataPointMoles, "moles", dataframework.element);
                         break;
                 }
@@ -739,7 +789,7 @@
                 document.getElementById("startimg").style.top = "-10px";
                 document.getElementById("startimg").style.left = "40px";
                 document.getElementById("startimg").style.display = "block";
-                } else if(end == undefined) {
+            } else if (end == undefined) {
                 end = new DataFramework("grams", start.input2);
                 document.getElementById("curchoosing").innerHTML = "";
                 document.getElementById("endimg").style.top = "-10px";
@@ -759,7 +809,7 @@
                 document.getElementById("startimg").style.display = "block";
                 document.getElementById("curchoosing").innerHTML =
                     "Currently Choosing End<br>Click on one of the parts of the map"
-            } else if(end == undefined) {
+            } else if (end == undefined) {
                 end = new DataFramework("particles", start.input2);
                 document.getElementById("curchoosing").innerHTML = "";
                 document.getElementById("endimg").style.top = "175px";
@@ -780,7 +830,7 @@
                 document.getElementById("startimg").style.display = "block";
                 document.getElementById("curchoosing").innerHTML =
                     "Currently Choosing End<br>Click on one of the parts of the map"
-            } else if(end == undefined) {
+            } else if (end == undefined) {
                 end = new DataFramework("liters", start.input2);
                 document.getElementById("curchoosing").innerHTML = "";
                 document.getElementById("endimg").style.top = "355px";
@@ -796,10 +846,10 @@
                 document.getElementById("moles1element").style.display = "block";
                 document.getElementById("curchoosing").innerHTML =
                     "Currently Choosing End<br>Click on one of the parts of the map"
-                    document.getElementById("startimg").style.top = "180px";
+                document.getElementById("startimg").style.top = "180px";
                 document.getElementById("startimg").style.left = "210px";
                 document.getElementById("startimg").style.display = "block";
-            } else if(end == undefined) {
+            } else if (end == undefined) {
                 end = new DataFramework("moles", start.input2);
                 document.getElementById("curchoosing").innerHTML = "";
                 document.getElementById("endimg").style.top = "180px";
@@ -807,7 +857,8 @@
                 document.getElementById("endimg").style.display = "block";
             }
         });
-        document.getElementById("moles2").addEventListener("click", function () {if (start == undefined) {} else if(end == undefined) {
+        document.getElementById("moles2").addEventListener("click", function () {
+            if (start == undefined) {} else if (end == undefined) {
                 end = new DataFramework("moles", document.getElementById("moles2element"))
                 document.getElementById("moles2element").style.display = "block";
                 document.getElementById("molesratio1").style.display = "block";
@@ -819,7 +870,7 @@
             }
         });
         document.getElementById("mass2").addEventListener("click", function () {
-            if (start == undefined) {} else if(end == undefined) {
+            if (start == undefined) {} else if (end == undefined) {
                 end = new DataFramework("grams", document.getElementById("mass2element"))
                 document.getElementById("mass2element").style.display = "block";
                 document.getElementById("molesratio1").style.display = "block";
@@ -831,7 +882,7 @@
             }
         });
         document.getElementById("particles2").addEventListener("click", function () {
-            if (start == undefined) {} else if(end == undefined) {
+            if (start == undefined) {} else if (end == undefined) {
                 document.getElementById("molesratio1").style.display = "block";
                 document.getElementById("molesratio2").style.display = "block";
                 end = new DataFramework("particles", document.getElementById("particles2element"))
@@ -844,7 +895,7 @@
         });
         document.getElementById("volume2").addEventListener("click", function () {
 
-            if (start == undefined) {} else if(end == undefined) {
+            if (start == undefined) {} else if (end == undefined) {
                 document.getElementById("molesratio1").style.display = "block";
                 document.getElementById("molesratio2").style.display = "block";
                 end = new DataFramework("liters", document.getElementById("volume2element"))
@@ -857,23 +908,26 @@
         });
         document.getElementById("curchoosing").innerHTML =
             "Currently Choosing Start<br>Click on one of the parts of the map"
-        setInterval(function(){
-            try{
-            start.setValues();
-            end.setValues();
+        setInterval(function () {
+            try {
+                start.setValues();
+                end.setValues();
 
-            var baseValue = convert(start, end, 1).value;
-            value = baseValue.toPrecision(findSigFigs(start.value));
-            if(!isNaN(value)){
-            document.getElementById("result").innerHTML = (value + " " + convert(start, end, 1).type + " of " + convert(start, end, 1).element) + "<br><p id = 'exact'> EXACT CALC: " + baseValue + "</p>";
-            
-            }else{
-                console.log("no inputs"); 
+                var baseValue = convert(start, end, 1).value;
+                value = baseValue.toPrecision(findSigFigs(start.value));
+                if (!isNaN(value)) {
+                    document.getElementById("result").innerHTML = (value + " " + convert(start, end, 1).type +
+                            " of " + convert(start, end, 1).element) + "<br><p id = 'exact'> EXACT CALC: " +
+                        baseValue + "</p>";
+
+                } else {
+                    console.error("no inputs/invalid");
+                }
+            } catch {
+                console.error("no inputs/invalid");
             }
-            } catch{
-                console.log("no inputs");
-            }
-        },200);
+        }, 200);
+
         function fixNonDigits(array) {
             var temp = array;
             for (var i = 0; i < temp.length; i++) {
@@ -887,21 +941,22 @@
             }
             return temp;
         }
-        setInterval(function(){
-            var temp = new DataFramework("N/A",document.getElementById("molarmasscalcele"));
-            if(document.getElementById("molarmasscalcele").value != ""){
-            temp.setValues();
-            if(temp.findMolarMass() == 0 || temp.findMolarMass() == "invalid"){
-                document.getElementById("molarmasscalcresult").innerHTML = "Invalid Formula Provided";  
-            }else{
-            document.getElementById("molarmasscalcresult").innerHTML = temp.findMolarMass() + " grams/mole";
+        setInterval(function () {
+            var temp = new DataFramework("N/A", document.getElementById("molarmasscalcele"));
+            if (document.getElementById("molarmasscalcele").value != "") {
+                temp.setValues();
+                if (temp.findMolarMass() == 0 || temp.findMolarMass() == "invalid") {
+                    document.getElementById("molarmasscalcresult").innerHTML = "Invalid Formula Provided";
+                } else {
+                    document.getElementById("molarmasscalcresult").innerHTML = temp.findMolarMass() +
+                        " grams/mole";
+                }
+            } else {
+                document.getElementById("molarmasscalcresult").innerHTML = "No Formula Provided";
             }
-            }else{
-                document.getElementById("molarmasscalcresult").innerHTML = "No Formula Provided";   
-            }
-            
-        },200)
+
+        }, 200)
     </script>
-</body>
+    </body>
 
 </html>
